@@ -1,0 +1,48 @@
+{% extends 'base.html' %} <!--basehtmlden kalıtım alacağız(inheritance)--> 
+
+{% block content %} <!--testhtmlde nereye yazdıysak bunu burası orada görünecektir-->
+
+
+   <h1>Weather rapor</h1>
+   <br>
+     
+    <!--jinja syntax iki süslü parantez iç içe gösterilir--> 
+
+   <h2>Paris:{{Paris}} </h2>  <!--Burada süslü parantez içindekiler ekranda görünmez onun yerine views'te context olarak verdiğimizden çekilen dict'teki bilgi gözükür yani jinja bile burayı bir anahtar gibi yaptık. Paris:30 olarak gzöükür ekran çıktısı.-->
+
+   <br>
+   <h2>Rome:{{Rome}}</h2>
+
+   <br>
+   <!--<h2>Bordeaux: Morning:{{Bordeaux.morning}}, Evening:{{Bordeaux.evening}}</h2> nokta morning dersek morning'teki hava derecesini getirir.-->
+
+   <ul>
+   {% for key,value in Bordeaux.items %}
+     <h2><li>{{key}} : {{value}}</li></h2>
+   {% endfor %}
+   </ul>
+  
+   <br>
+
+   <br>
+   <!--<h2>Madrid:{{Madrid.0}}</h2> nokta 0 yaparsak ilk hava derecesini getiirir. Madrid:10 yazar.-->
+  
+  <br>
+   {% if user_premium %} <!--Eğer kullanıcı premium ise Madrid'i görsün-->
+    <ul>
+      {% for item in Madrid  %} <!--Madrid içindeki elemanları aldık-->
+        {% if item < 10 %} <!--eğer madrid 10 dereceden küçük ise -->
+        <h2><li>Madrid: {{item}}, Too Cold. </li><h2> <!--Madrid içinde değerleri ekrana gösteririz.-->
+          {% else %} <!--değilse normal dereceyi yazmaya devam et-->
+        {% endif %}
+      {% endfor %}
+    </ul>
+   {% endif %}
+
+   <br>
+   <h2>{{test | upper}}</h2> <!--tüm yazıyı buyuk harfle gösterir-->
+   
+   <br>
+   <!--<h2><a href="{% url 'template_app:index' %}">Go to Index</a></h2> index'e gitme link'i veriyoruz-->
+
+{% endblock %}

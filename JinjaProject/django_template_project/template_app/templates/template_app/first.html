@@ -1,0 +1,7 @@
+{% extends 'base.html' %} <!--basehtmlden kalıtım alacağız(inheritance)-->
+{% load static %} <!--static yükleyeceğiz deriz.-->
+
+{% block content %} <!--testhtmlde nereye yazdıysak bunu burası orada görünecektir-->
+<h1>Friends</h1>
+<img src="{% static 'template_app/friends.jpeg' %}" alt="friends">
+{% endblock %}
